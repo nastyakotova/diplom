@@ -1,0 +1,13 @@
+{
+    "name": "diplom",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css}\""
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "prettier": "2.8.7"
+    }
+}
