@@ -7,3 +7,5 @@ from .models import Student
 class StudentView(generics.ListAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+
+    # 123
