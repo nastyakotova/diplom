@@ -34,6 +34,14 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         },
       },
+      exam_type: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      exam_date: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
     },
     {
       sequelize,

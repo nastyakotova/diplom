@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      inDiplom: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
       professor_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
