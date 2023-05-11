@@ -14,6 +14,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
+      login: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      password: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
       name: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -24,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       patronymic: {
         type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      isMale: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
       role: {

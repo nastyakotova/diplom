@@ -31,6 +31,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      exam_type: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      exam_date: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
