@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface) {
     await queryInterface.bulkInsert(
       'Programms',
       [
@@ -15,6 +13,4 @@ module.exports = {
       {},
     );
   },
-
-  async down(queryInterface, Sequelize) {},
 };
