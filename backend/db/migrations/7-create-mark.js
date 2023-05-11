@@ -23,6 +23,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      inDiplom: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
       professor_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

@@ -7,6 +7,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      login: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      password: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
       name: {
         type: Sequelize.TEXT,
         allowNull: false,
@@ -17,6 +25,10 @@ module.exports = {
       },
       patronymic: {
         type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      isMale: {
+        type: Sequelize.BOOLEAN,
         allowNull: false,
       },
       role: {
