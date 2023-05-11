@@ -12,7 +12,7 @@ const NavigationContainer = styled.div`
 const NavigationButtonsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-items: center;
+  // justify-items: center;
   height: 44px;
   width: 100%;
 `;
@@ -22,6 +22,7 @@ const NavigationButton = styled.div`
   transition: all 0.1s ease-in-out;
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
   ${(props) => {
     if (props.variant === 'active')
