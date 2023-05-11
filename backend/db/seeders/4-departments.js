@@ -24,7 +24,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          title: 'Кафедра физической культуры',
+          title: 'Кафедра физического воспитания и спортивно-массовой работы',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
