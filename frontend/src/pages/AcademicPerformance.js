@@ -5,7 +5,7 @@ import { Grid } from '../components/AcademicPerformance/Grid';
 
 const AcademicPerformanceContainer = styled.div`
     display: grid;
-    grid-template-columns: 0.7fr 2fr;
+    grid-template-columns: 0.8fr 2fr;
     height: 920px;
     & * {
         box-sizing: border-box;
