@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+// const cors = require('cors');
 const path = require('path');
 const expressConfig = require('./config/express');
 
@@ -8,6 +9,13 @@ const expressConfig = require('./config/express');
 const loginApiRouter = require('./routes/api/login.routes');
 
 const app = express();
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  next();
+});
+
 const PORT = process.env.PORT ?? 3000;
 
 // функция настройки экспресса

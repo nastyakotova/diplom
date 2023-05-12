@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import avatar from '../../assets/images/avatar.jpg';
+import { useSelector } from 'react-redux';
 
 const UserContainer = styled.div`
   display: flex;
@@ -28,10 +29,12 @@ const UserInfo = styled.div`
 `;
 
 export const User = () => {
+  const { name, patronymic, surname } = useSelector((state) => state.user);
+
   return (
     <UserContainer>
         <UserInfo>
-            <h2>Иванов Иван</h2>
+            <h2>{`${name} ${patronymic} ${surname}`}</h2>
             <p>Факультет математики</p>
         </UserInfo>
         <img src={avatar} alt='' />

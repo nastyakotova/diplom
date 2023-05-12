@@ -1,9 +1,10 @@
-import * as React from'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/images/logo.jpg';
 import { Navigation } from './Navigation';
 import { User } from './User';
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 
 const HeaderContainer = styled.div`
   height: 90px;
@@ -24,12 +25,17 @@ const Logo = styled.img`
 
 export const Header = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   return (
     <HeaderContainer>
       <Logo src={logo} alt="logo" onClick={() => navigate('/')} />
-      <Navigation />
-      <User />
+      {isAuthenticated ? (
+        <React.Fragment>
+          <Navigation />
+          <User />
+        </React.Fragment>
+      ) : null}
     </HeaderContainer>
   );
 };
