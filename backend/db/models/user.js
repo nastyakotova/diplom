@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       patronymic: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       isMale: {
         type: DataTypes.BOOLEAN,

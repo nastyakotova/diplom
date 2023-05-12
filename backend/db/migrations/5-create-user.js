@@ -25,7 +25,7 @@ module.exports = {
       },
       patronymic: {
         type: Sequelize.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       isMale: {
         type: Sequelize.BOOLEAN,
