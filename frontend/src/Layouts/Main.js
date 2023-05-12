@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Outlet } from 'react-router';
-import { Header } from '../components/Header/Header';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { Outlet, useNavigate } from 'react-router';
+
+import { Header } from '../components/Header/Header';
 
 const OutletContainer = styled.div`
   max-width: 1720px;
@@ -10,6 +12,13 @@ const OutletContainer = styled.div`
 `;
 
 export const Main = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.user);
+
+  React.useEffect(() => {
+    if (!isAuthenticated) navigate('/login');
+  }, [isAuthenticated, navigate]);
+
   return (
     <React.Fragment>
       <Header />

@@ -15,6 +15,7 @@ import { Profile } from './pages/Profile';
 import { Schedule } from './pages/Schedule';
 import { Groups } from './pages/Groups';
 import { Error } from './pages/Error';
+import { Login } from './pages/Login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -29,6 +30,7 @@ root.render(
             <Route path="/profile" element={<Profile />} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="/groups" element={<Groups />} />
+            <Route path="/login" element={<Login />} />
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>

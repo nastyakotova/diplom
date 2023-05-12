@@ -6,14 +6,13 @@ const NavigationContainer = styled.div`
   background-color: #ffffff;
   border-radius: 15px;
   height: 100%;
-  padding: 24px;
 `;
 
 const NavigationButtonsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 44px;
-  width: 100%;
+  margin: 24px 24px 0 24px;
 `;
 
 const NavigationButton = styled.div`
@@ -45,7 +44,7 @@ const FiltersContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-  margin: 16px 0;
+  margin: 16px 24px;
 `;
 
 const Filter = styled.div`
@@ -68,20 +67,30 @@ const Filter = styled.div`
 const Menu = styled.div``;
 
 const MenuItem = styled.div`
+  white-space: pre-wrap;
+  padding: 12px 24px 0 24px;
   & h3 {
     font-size: 20px;
     line-height: 23px;
     color: #101010;
+    margin-bottom: 4px;
   }
   & h4 {
     font-size: 14px;
     line-height: 16px;
     color: #264796;
+    margin-bottom: 6px;
   }
   & p {
     font-size: 16px;
     line-height: 19px;
     color: rgba(16, 16, 16, 0.5);
+    height: 72px;
+    border-bottom: 1px solid rgba(16, 16, 16, 0.1);
+  }
+  &:hover {
+    background: rgba(0, 55, 144, 0.03);
+    cursor: pointer;
   }
 `;
 
@@ -108,7 +117,7 @@ export const Navigation = () => {
               <Filter key={filter}>
                 {filter}
                 <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 0.5L6 5.5L11 0.5" stroke="#101010" stroke-opacity="0.5" />
+                  <path d="M1 0.5L6 5.5L11 0.5" stroke="#101010" strokeOpacity="0.5" />
                 </svg>
               </Filter>
             ))}
