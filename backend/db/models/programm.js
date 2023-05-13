@@ -3,8 +3,8 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Programm extends Model {
     static associate({ Group, Module }) {
-      Programm.Group = Programm.hasMany(Group, { foreignKey: 'programm_id' });
-      Programm.Module = Programm.hasMany(Module, { foreignKey: 'programm_id' });
+      Programm.Group = Programm.hasMany(Group, { foreignKey: 'programmId' });
+      Programm.Module = Programm.hasMany(Module, { foreignKey: 'programmId' });
     }
   }
   Programm.init(

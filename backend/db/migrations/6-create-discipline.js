@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      module_id: {
+      moduleId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -19,7 +19,7 @@ module.exports = {
           key: 'id',
         },
       },
-      professor_id: {
+      professorId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -27,15 +27,23 @@ module.exports = {
           key: 'id',
         },
       },
+      groupId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Groups',
+          key: 'id',
+        },
+      },
       semester: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      exam_type: {
+      examType: {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      exam_date: {
+      examDate: {
         type: Sequelize.DATE,
         allowNull: true,
       },

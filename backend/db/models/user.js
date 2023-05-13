@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate({
       Group, Department, Discipline, Mark,
     }) {
-      User.Group = User.belongsTo(Group, { foreignKey: 'group_id' });
-      User.Department = User.belongsTo(Department, { foreignKey: 'department_id' });
-      User.Discipline = User.hasMany(Discipline, { foreignKey: 'professor_id' });
-      User.StudentMark = User.hasMany(Mark, { foreignKey: 'student_id' });
-      User.ProfessorMark = User.hasMany(Mark, { foreignKey: 'professor_id' });
+      User.Group = User.belongsTo(Group, { foreignKey: 'groupId' });
+      User.Department = User.belongsTo(Department, { foreignKey: 'departmentId' });
+      User.Discipline = User.hasMany(Discipline, { foreignKey: 'professorId' });
+      User.StudentMark = User.hasMany(Mark, { foreignKey: 'studentId' });
+      User.ProfessorMark = User.hasMany(Mark, { foreignKey: 'professorId' });
     }
   }
   User.init(
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      group_id: {
+      groupId: {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         },
       },
-      department_id: {
+      departmentId: {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {

@@ -35,7 +35,7 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      group_id: {
+      groupId: {
         type: Sequelize.INTEGER,
         allowNull: true,
         references: {
@@ -43,7 +43,7 @@ module.exports = {
           key: 'id',
         },
       },
-      department_id: {
+      departmentId: {
         type: Sequelize.INTEGER,
         allowNull: true,
         references: {

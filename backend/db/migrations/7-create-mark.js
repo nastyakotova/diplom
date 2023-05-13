@@ -7,7 +7,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      student_id: {
+      studentId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      professor_id: {
+      professorId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -39,7 +39,7 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      discipline_id: {
+      disciplineId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {

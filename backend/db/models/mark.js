@@ -3,14 +3,14 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Mark extends Model {
     static associate({ User, Discipline }) {
-      Mark.Student = Mark.belongsTo(User, { foreignKey: 'student_id' });
-      Mark.Professor = Mark.belongsTo(User, { foreignKey: 'professor_id' });
-      Mark.Discipline = Mark.belongsTo(Discipline, { foreignKey: 'discipline_id' });
+      Mark.Student = Mark.belongsTo(User, { foreignKey: 'studentId' });
+      Mark.Professor = Mark.belongsTo(User, { foreignKey: 'professorId' });
+      Mark.Discipline = Mark.belongsTo(Discipline, { foreignKey: 'disciplineId' });
     }
   }
   Mark.init(
     {
-      student_id: {
+      studentId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
-      professor_id: {
+      professorId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      discipline_id: {
+      disciplineId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {

@@ -7,7 +7,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      group_name: {
+      groupName: {
         type: Sequelize.TEXT,
         allowNull: false,
       },
@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      programm_id: {
+      programmId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {

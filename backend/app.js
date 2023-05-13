@@ -7,6 +7,7 @@ const expressConfig = require('./config/express');
 
 // импортируем роутеры
 const loginApiRouter = require('./routes/api/login.routes');
+const professorApiRouter = require('./routes/api/professor.routes');
 
 const app = express();
 app.use((req, res, next) => {
@@ -23,6 +24,7 @@ expressConfig(app);
 
 // подключаем роутеры
 app.use('/api/auth', loginApiRouter);
+app.use('/api/professor', professorApiRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));

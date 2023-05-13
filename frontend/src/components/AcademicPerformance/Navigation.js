@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { disciplines, filters, options } from './assets/consts';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadDisciplines } from '../../store/data/actionsCreators';
 
 const NavigationContainer = styled.div`
   background-color: #ffffff;
@@ -95,7 +97,14 @@ const MenuItem = styled.div`
 `;
 
 export const Navigation = () => {
+  const dispatch = useDispatch();
+  const { id } = useSelector((state) => state.user);
+  const { disciplines } = useSelector((state) => state.data);
   const [currentOption, setCurrentOption] = React.useState(0);
+
+  React.useEffect(() => {
+    dispatch(loadDisciplines(id));
+  }, [dispatch, id]);
 
   return (
     <NavigationContainer>
@@ -126,8 +135,12 @@ export const Navigation = () => {
             {disciplines.map((discipline, index) => (
               <MenuItem key={index + discipline.title}>
                 <h3>{discipline.title}</h3>
-                <h4>{discipline.group}</h4>
-                <p>{discipline.attestation}</p>
+                <h4>{`Группа ${discipline.Group.groupName}, ${discipline.Group.Users.length} студентов`}</h4>
+                <p>{`Дата аттестации: ${discipline.examDate
+                  .slice(0, 10)
+                  .split('-')
+                  .reverse()
+                  .join('.')}\nФорма аттестации: ${discipline.examType}`}</p>
               </MenuItem>
             ))}
           </Menu>

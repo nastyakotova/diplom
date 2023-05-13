@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router';
 
-import { navigation } from './assets/consts';
+import { professorNavigation, studentNavigation } from './assets/consts';
+import { useSelector } from 'react-redux';
 
 const NavigationContainer = styled.div`
   display: flex;
@@ -41,10 +42,19 @@ const NavigationButton = styled.div`
 export const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { role } = useSelector((state) => state.user);
+
+  const [routes, setRoutes] = React.useState(
+    role === 'student' ? studentNavigation : role === 'professor' ? professorNavigation : [],
+  );
+
+  React.useEffect(() => {
+    setRoutes(role === 'student' ? studentNavigation : role === 'professor' ? professorNavigation : []);
+  }, [role]);
 
   return (
     <NavigationContainer>
-      {navigation.map((page) => (
+      {routes.map((page) => (
         <NavigationButton
           key={page.path}
           onClick={() => navigate(page.path)}

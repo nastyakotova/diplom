@@ -3,8 +3,8 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Module extends Model {
     static associate({ Programm, Discipline }) {
-      Module.Programm = Module.belongsTo(Programm, { foreignKey: 'programm_id' });
-      Module.Discipline = Module.hasMany(Discipline, { foreignKey: 'module_id' });
+      Module.Programm = Module.belongsTo(Programm, { foreignKey: 'programmId' });
+      Module.Discipline = Module.hasMany(Discipline, { foreignKey: 'moduleId' });
     }
   }
   Module.init(
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      programm_id: {
+      programmId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
