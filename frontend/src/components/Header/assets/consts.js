@@ -1,5 +1,4 @@
 import { AcademicPerformance } from '../../../pages/AcademicPerformance';
-import { Archive } from '../../../pages/Archive';
 import { EducationalPerformance } from '../../../pages/EducationalPerformance';
 import { EducationalRoute } from '../../../pages/EducationalRoute';
 import { Groups } from '../../../pages/Groups';
@@ -12,11 +11,6 @@ export const professorNavigation = [
     path: '/',
     title: 'Успеваемость и посещаемость',
     Component: AcademicPerformance,
-  },
-  {
-    path: '/archive',
-    title: 'Архив',
-    Component: Archive,
   },
   {
     path: '/profile',

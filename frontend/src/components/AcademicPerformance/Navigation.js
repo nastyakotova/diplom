@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { disciplines, filters, options } from './assets/consts';
+import { filters, options } from './assets/consts';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadDisciplines } from '../../store/data/actionsCreators';
+import { Archive } from './Archive';
 
 const NavigationContainer = styled.div`
   background-color: #ffffff;
@@ -71,7 +72,11 @@ const Menu = styled.div``;
 const MenuItem = styled.div`
   white-space: pre-wrap;
   padding: 12px 24px 0 24px;
-  & h3 {
+  background: ${(props) => {
+      if (props.variant === 'active') return 'rgba(0, 55, 144, 0.03);';
+      if (props.variant === 'basic') return '#ffffff;';
+    }}
+    & h3 {
     font-size: 20px;
     line-height: 23px;
     color: #101010;
@@ -96,7 +101,7 @@ const MenuItem = styled.div`
   }
 `;
 
-export const Navigation = () => {
+export const Navigation = ({ currentItem, setCurrentItem }) => {
   const dispatch = useDispatch();
   const { id } = useSelector((state) => state.user);
   const { disciplines } = useSelector((state) => state.data);
@@ -133,7 +138,11 @@ export const Navigation = () => {
           </FiltersContainer>
           <Menu>
             {disciplines.map((discipline, index) => (
-              <MenuItem key={index + discipline.title}>
+              <MenuItem
+                key={index + discipline.title}
+                onClick={() => setCurrentItem(index)}
+                variant={currentItem === index ? 'active' : 'basic'}
+              >
                 <h3>{discipline.title}</h3>
                 <h4>{`Группа ${discipline.Group.groupName}, ${discipline.Group.Users.length} студентов`}</h4>
                 <p>{`Дата аттестации: ${discipline.examDate
@@ -145,7 +154,9 @@ export const Navigation = () => {
             ))}
           </Menu>
         </React.Fragment>
-      ) : null}
+      ) : (
+        <Archive />
+      )}
     </NavigationContainer>
   );
 };

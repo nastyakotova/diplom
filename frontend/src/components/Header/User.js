@@ -22,6 +22,7 @@ const UserInfo = styled.div`
     font-size: 16px;
     line-height: 19px;
     margin-bottom: 4px;
+    white-space: pre-wrap;
   }
   & p {
     font-size: 14px;
@@ -79,9 +80,9 @@ export const User = () => {
     <UserContainer>
       <UserInfo>
         <h2>
+          {surname ? `${surname}\n` : ''}
           {name ? `${name} ` : ''}
-          {patronymic ? `${patronymic} ` : ''}
-          {surname ? surname : ''}
+          {patronymic ? patronymic : ''}
         </h2>
         <p>{role === 'student' ? `Группа ${Group.groupName}` : role === 'professor' ? Department.title : ''}</p>
       </UserInfo>
