@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      programm_id: {
+      programmId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {

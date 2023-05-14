@@ -3,11 +3,10 @@ import { AUTH_LOGOUT, SET_USER_INFO } from './actionsTypes';
 const preloadedState = JSON.parse(window.localStorage.getItem('user')) || { isAuthenticated: false };
 
 const initialState = {
-    // isAuthenticated: false,
   ...preloadedState,
 };
 
-export default function listReducer(state = initialState, action) {
+export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER_INFO: {
       window.localStorage.setItem('user', JSON.stringify({ isAuthenticated: true, ...action.payload }));

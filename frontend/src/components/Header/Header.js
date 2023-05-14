@@ -12,7 +12,6 @@ const HeaderContainer = styled.div`
   border-radius: 15px;
   max-width: 1720px;
   width: 90%;
-  overflow: hidden;
   display: flex;
   align-items: center;
   position: sticky;
@@ -20,7 +19,7 @@ const HeaderContainer = styled.div`
 `;
 
 const Logo = styled.img`
-  padding: 0 8px 0 24px;
+  padding: 0 38px 0 24px;
 `;
 
 export const Header = () => {

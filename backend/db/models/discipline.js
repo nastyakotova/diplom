@@ -2,10 +2,13 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Discipline extends Model {
-    static associate({ Module, User, Mark }) {
-      Discipline.Module = Discipline.belongsTo(Module, { foreignKey: 'module_id' });
-      Discipline.User = Discipline.belongsTo(User, { foreignKey: 'professor_id' });
-      Discipline.Mark = Discipline.hasMany(Mark, { foreignKey: 'discipline_id' });
+    static associate({
+      Module, User, Mark, Group,
+    }) {
+      Discipline.Module = Discipline.belongsTo(Module, { foreignKey: 'moduleId' });
+      Discipline.User = Discipline.belongsTo(User, { foreignKey: 'professorId' });
+      Discipline.Mark = Discipline.hasMany(Mark, { foreignKey: 'disciplineId' });
+      Discipline.Group = Discipline.belongsTo(Group, { foreignKey: 'groupId' });
     }
   }
   Discipline.init(
@@ -14,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      module_id: {
+      moduleId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -26,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      professor_id: {
+      professorId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -34,11 +37,19 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         },
       },
-      exam_type: {
+      groupId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Groups',
+          key: 'id',
+        },
+      },
+      examType: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      exam_date: {
+      examDate: {
         type: DataTypes.DATE,
         allowNull: true,
       },

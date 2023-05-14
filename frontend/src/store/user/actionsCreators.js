@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { SET_USER_INFO } from './actionsTypes';
+import { AUTH_LOGOUT, SET_USER_INFO } from './actionsTypes';
 
 export const setUserInfo = (payload) => ({ type: SET_USER_INFO, payload });
+export const storeLogout = () => ({ type: AUTH_LOGOUT });
 
 export function loginUser({ login, password }) {
   return (dispatch) => {
@@ -13,6 +14,19 @@ export function loginUser({ login, password }) {
             dispatch(setUserInfo(response.data));
           }
         })
+        .catch((error) => console.log(error));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function logoutUser() {
+  return (dispatch) => {
+    try {
+      axios
+        .get('http://localhost:4000/api/auth/logout')
+        .then((response) => { dispatch(storeLogout()); })
         .catch((error) => console.log(error));
     } catch (error) {
       console.log(error);
