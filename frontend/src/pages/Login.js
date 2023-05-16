@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { loginUser } from '../store/user/actionsCreators';
 import { useNavigate } from 'react-router';
+import { Button } from '../components/SimpleComponents/Button';
 
 const LoginContainer = styled.form`
   background-color: #ffffff;
@@ -31,27 +32,6 @@ const LoginContainer = styled.form`
     color: rgba(16, 16, 16, 0.5);
     margin-bottom: 20px;
     border-radius: 10px;
-  }
-  & button {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 15px 35px;
-    gap: 10px;
-    background: #003790;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #ffffff;
-    cursor: pointer;
-    border: none;
-    margin: 10px 0 0 10px;
-    border-radius: 10px;
-    &:hover {
-      background: #bababa;
-    }
   }
 `;
 
@@ -88,7 +68,9 @@ export const Login = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleSubmit}>Войти</button>
+      <Button width={200} onClick={handleSubmit}>
+        Войти
+      </Button>
     </LoginContainer>
   );
 };

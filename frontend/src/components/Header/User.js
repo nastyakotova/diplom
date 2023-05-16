@@ -36,10 +36,8 @@ const UserMenu = styled.div`
   top: 100px;
   right: -24px;
   background-color: #ffffff;
-  border-radius: 15px;
-  padding: 24px 0;
   width: 200px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 25px rgba(16, 16, 16, 0.05);
   transition: opacity 1s ease-in-out;
   opacity: ${(props) => (props.show ? '1' : '0')};
 `;
@@ -47,7 +45,6 @@ const UserMenu = styled.div`
 const MenuItem = styled.div`
   padding: 16px 24px;
   color: #264796;
-  border-bottom: 1px solid rgba(16, 16, 16, 0.1);
   &:hover {
     background: rgba(0, 55, 144, 0.03);
     cursor: pointer;

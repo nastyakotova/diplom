@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import avatar from '../assets/images/avatar.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../store/user/actionsCreators';
+import { Button } from '../components/SimpleComponents/Button';
 
 const ProfileContainer = styled.div`
   display: grid;
@@ -35,25 +35,7 @@ const MainContainer = styled.div`
     margin: 24px 0 60px 0;
   }
   & button {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 15px 35px;
-    gap: 10px;
-    background: #003790;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #ffffff;
-    cursor: pointer;
-    border: none;
-    margin: 10px 0 0 10px;
-    border-radius: 10px;
-    &:hover {
-      background: #bababa;
-    }
+    margin: 10px 0 0 0;
   }
 `;
 
@@ -125,11 +107,11 @@ export const Profile = () => {
           {patronymic ? patronymic : ''}
         </h2>
         <p>{role === 'student' ? `Группа ${Group.groupName}` : role === 'professor' ? Department.title : ''}</p>
-        <button>Сменить пароль</button>
-        <button>Сменить аватар</button>
-        <button style={{ background: '#BA1600' }} onClick={() => dispatch(logoutUser())}>
+        <Button width={200}>Сменить пароль</Button>
+        <Button width={200}>Сменить аватар</Button>
+        <Button width={200} variant={'#BA1600'} onClick={() => dispatch(logoutUser())}>
           Выйти
-        </button>
+        </Button>
       </MainContainer>
       <InfoContainer>
         <h3>Анкетные данные</h3>
