@@ -3,13 +3,14 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate({
-      Group, Department, Discipline, Mark,
+      Group, Department, Discipline, Mark, Use,
     }) {
       User.Group = User.belongsTo(Group, { foreignKey: 'groupId' });
       User.Department = User.belongsTo(Department, { foreignKey: 'departmentId' });
       User.Discipline = User.hasMany(Discipline, { foreignKey: 'professorId' });
       User.StudentMark = User.hasMany(Mark, { foreignKey: 'studentId' });
       User.ProfessorMark = User.hasMany(Mark, { foreignKey: 'professorId' });
+      User.Use = User.hasMany(Use, { foreignKey: 'studentId' });
     }
   }
   User.init(
@@ -41,6 +42,22 @@ module.exports = (sequelize, DataTypes) => {
       role: {
         type: DataTypes.TEXT,
         allowNull: false,
+      },
+      age: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      city: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      formOfEducation: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      directing: {
+        type: DataTypes.TEXT,
+        allowNull: true,
       },
       groupId: {
         type: DataTypes.INTEGER,

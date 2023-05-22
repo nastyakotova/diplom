@@ -18,16 +18,8 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         },
       },
-      markType: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
       grade: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      inDiplom: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       professorId: {
@@ -37,10 +29,6 @@ module.exports = (sequelize, DataTypes) => {
           model: 'User',
           key: 'id',
         },
-      },
-      date: {
-        type: DataTypes.DATE,
-        allowNull: false,
       },
       disciplineId: {
         type: DataTypes.INTEGER,

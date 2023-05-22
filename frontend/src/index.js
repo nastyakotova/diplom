@@ -11,17 +11,15 @@ import store from './store';
 import { Main } from './Layouts/Main';
 import { Error } from './pages/Error';
 import { Login } from './pages/Login';
-import { professorNavigation, studentNavigation } from './components/Header/assets/consts';
+import { navigation } from './components/Header/assets/consts';
 
 export const Routings = () => {
   const { role } = useSelector((state) => state.user);
 
-  const [routes, setRoutes] = React.useState(
-    role === 'student' ? studentNavigation : role === 'professor' ? professorNavigation : [],
-  );
+  const [routes, setRoutes] = React.useState(navigation[role] || []);
 
   React.useEffect(() => {
-    setRoutes(role === 'student' ? studentNavigation : role === 'professor' ? professorNavigation : []);
+    setRoutes(navigation[role] || []);
   }, [role]);
 
   return (

@@ -1,5 +1,6 @@
+/* eslint-disable object-curly-newline */
 const professorRouter = require('express').Router();
-const { Discipline, User, Group } = require('../../db/models');
+const { Discipline, User, Group, Mark } = require('../../db/models');
 
 professorRouter.post('/disciplines', async (req, res) => {
   try {
@@ -15,6 +16,9 @@ professorRouter.post('/disciplines', async (req, res) => {
               model: User,
             },
           ],
+        },
+        {
+          model: Mark,
         },
       ],
     });

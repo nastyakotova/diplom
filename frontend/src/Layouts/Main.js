@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 
 import { Header } from '../components/Header/Header';
-import { professorNavigation, studentNavigation } from '../components/Header/assets/consts';
+import { navigation } from '../components/Header/assets/consts';
 
 const OutletContainer = styled.div`
   max-width: 1720px;
@@ -18,12 +18,10 @@ export const Main = () => {
   const { isAuthenticated } = useSelector((state) => state.user);
   const { role } = useSelector((state) => state.user);
 
-  const [routes, setRoutes] = React.useState(
-    role === 'student' ? studentNavigation : role === 'professor' ? professorNavigation : [],
-  );
+  const [routes, setRoutes] = React.useState(navigation[role] || []);
 
   React.useEffect(() => {
-    setRoutes(role === 'student' ? studentNavigation : role === 'professor' ? professorNavigation : []);
+    setRoutes(navigation[role] || []);
   }, [role]);
 
   React.useEffect(() => {

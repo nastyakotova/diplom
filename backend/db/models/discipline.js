@@ -2,9 +2,8 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Discipline extends Model {
-    static associate({
-      Module, User, Mark, Group,
-    }) {
+    // eslint-disable-next-line object-curly-newline
+    static associate({ Module, User, Mark, Group }) {
       Discipline.Module = Discipline.belongsTo(Module, { foreignKey: 'moduleId' });
       Discipline.User = Discipline.belongsTo(User, { foreignKey: 'professorId' });
       Discipline.Mark = Discipline.hasMany(Mark, { foreignKey: 'disciplineId' });
@@ -36,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
           model: 'User',
           key: 'id',
         },
+      },
+      inDiplom: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
       },
       groupId: {
         type: DataTypes.INTEGER,

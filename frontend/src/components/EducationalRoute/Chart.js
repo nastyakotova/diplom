@@ -61,8 +61,9 @@ const data = {
   datasets: [
     {
       fill: true,
-      label: 'Текущие оценки',
-      data: [4.64, 4.82, 4.26, 2.87, 3.53, 4.57, 3.42, 3.24],
+      label: 'Средний балл',
+      // data: [4.64, 4.82, 4.26, 2.87, 3.53, 4.57, 3.42, 3.24],
+      data: [3.75, 3.2, 4.0, 3.8, 4.33, 4.57, 4.57, 5.0],
       borderColor: '#264796',
       backgroundColor: function (context) {
         const chart = context.chart;
@@ -70,7 +71,7 @@ const data = {
         if (!chartArea) return;
         return getGradient(ctx, chartArea);
       },
-      pointRadius: 0,
+      pointRadius: 3,
       hoverRadius: 4,
       borderWidth: 1,
     },
@@ -94,7 +95,7 @@ const Container = styled.div`
 export const Chart = () => {
   return (
     <Container>
-      <h2>Модуль "Математический анализ"</h2>
+      <h2>Сводная успеваемость</h2>
       <Line options={options} data={data} />
     </Container>
   );
