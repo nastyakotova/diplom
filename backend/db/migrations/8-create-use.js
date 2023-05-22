@@ -1,6 +1,6 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Marks', {
+    await queryInterface.createTable('Uses', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -15,25 +15,13 @@ module.exports = {
           key: 'id',
         },
       },
-      grade: {
+      title: {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      professorId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'id',
-        },
-      },
-      disciplineId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Disciplines',
-          key: 'id',
-        },
+      mark: {
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('Marks');
+    await queryInterface.dropTable('Uses');
   },
 };

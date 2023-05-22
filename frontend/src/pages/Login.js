@@ -14,6 +14,7 @@ const LoginContainer = styled.form`
   flex-direction: column;
   align-items: center;
   padding: 30px 0;
+  width: 100%;
   & h2 {
     font-weight: 700;
     font-size: 32px;

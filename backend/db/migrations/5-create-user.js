@@ -35,6 +35,22 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+      age: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
+      city: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
+      formOfEducation: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
+      directing: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
       groupId: {
         type: Sequelize.INTEGER,
         allowNull: true,

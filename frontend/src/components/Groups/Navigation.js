@@ -1,11 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { filters, options } from './assets/consts';
-import { useDispatch, useSelector } from 'react-redux';
-import { loadDisciplines } from '../../store/data/actionsCreators';
-import { checkDateEntrance } from './assets/checkDateEntrance';
 
-const NavigationContainer = styled.div`
+const Container = styled.div`
   background-color: #ffffff;
   border-radius: 15px;
   height: 100%;
@@ -115,38 +112,11 @@ const MenuItem = styled.div`
   }
 `;
 
-export const Navigation = ({ currentItem, setCurrentItem, currentOption, setCurrentOption }) => {
-  const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.user);
-  const { disciplines } = useSelector((state) => state.data);
-  const [actualDisciplines, setActualDisciplines] = React.useState(
-    currentOption === 0
-      ? disciplines.filter((disccipline) => checkDateEntrance(disccipline.examDate.slice(0, 10)))
-      : disciplines.filter((disccipline) => !checkDateEntrance(disccipline.examDate.slice(0, 10))),
-  );
-
-  React.useEffect(() => {
-    dispatch(loadDisciplines(id));
-  }, [dispatch, id]);
-
-  React.useEffect(() => {
-    setActualDisciplines(
-      currentOption === 0
-        ? disciplines.filter((disccipline) => checkDateEntrance(disccipline.examDate.slice(0, 10)))
-        : disciplines.filter((disccipline) => !checkDateEntrance(disccipline.examDate.slice(0, 10))),
-    );
-  }, [currentOption, disciplines]);
-
-  React.useEffect(() => {
-    if (actualDisciplines.length === 0) {
-      setCurrentItem(-1);
-    } else {
-      setCurrentItem(0);
-    }
-  }, [actualDisciplines.length, setCurrentItem, currentOption]);
+export const Navigation = ({ groups, currentItem, setCurrentItem, currentOption, setCurrentOption }) => {
+  console.log(groups);
 
   return (
-    <NavigationContainer>
+    <Container>
       <NavigationButtonsContainer>
         {options.map((option, index) => (
           <NavigationButton
@@ -169,22 +139,18 @@ export const Navigation = ({ currentItem, setCurrentItem, currentOption, setCurr
         ))}
       </FiltersContainer>
       <Menu>
-        {actualDisciplines.map((discipline, index) => (
+        {groups.map((group, index) => (
           <MenuItem
-            key={index + discipline.title}
+            key={index + group.groupName}
             onClick={() => setCurrentItem(index)}
             variant={currentItem === index ? 'active' : 'basic'}
           >
-            <h3>{discipline.title}</h3>
-            <h4>{`Группа ${discipline.Group.groupName}, ${discipline.Group.Users.length} студентов`}</h4>
-            <p>{`Дата аттестации: ${discipline.examDate
-              .slice(0, 10)
-              .split('-')
-              .reverse()
-              .join('.')}\nФорма аттестации: ${discipline.examType}`}</p>
+            <h3>{`Группа ${group.groupName}`}</h3>
+            <h4>{`${group.Users.length} студентов(-а)`}</h4>
+            <p>{`${group.Programm.number} ${group.kurs} курс\n${group.Programm.title}`}</p>
           </MenuItem>
         ))}
       </Menu>
-    </NavigationContainer>
+    </Container>
   );
 };

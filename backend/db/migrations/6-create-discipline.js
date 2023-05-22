@@ -35,6 +35,10 @@ module.exports = {
           key: 'id',
         },
       },
+      inDiplom: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
       semester: {
         type: Sequelize.INTEGER,
         allowNull: false,

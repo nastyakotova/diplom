@@ -7,6 +7,7 @@ const ProfileContainer = styled.div`
   display: grid;
   grid-template-columns: 0.8fr 2fr;
   height: 920px;
+  width: 100%;
   & * {
     box-sizing: border-box;
   }

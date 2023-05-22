@@ -5,65 +5,71 @@ module.exports = {
       [
         {
           title: 'Кафедра алгебры',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра геометрии',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра математического анализа',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра методики обучения математике и информатике',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра социальной безопасности',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра физического воспитания и спортивно-массовой работы',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра философии',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра русской литературы',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра истории',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра английского языка для профессиональной коммуникации',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра физической электроники',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           title: 'Кафедра информационных систем',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
-      ],
+        {
+          title: 'Кафедра медико-валеологических дисциплин',
+        },
+        {
+          title: 'Кафедра информационных технологий и электронного обучения',
+        },
+        {
+          title: 'Кафедра экономической теории и экономического образования',
+        },
+        {
+          title: 'Кафедра теории права и гражданско-правового образования',
+        },
+        {
+          title: 'Кафедра истории педагогики и образования',
+        },
+        {
+          title: 'Кафедра общей и социальной психологии',
+        },
+        {
+          title: 'Кафедра психологии развития и образования',
+        },
+        {
+          title: 'Кафедра методики обучения безопасности жизнедеятельности',
+        },
+        {
+          title: 'Кафедра теории и методики непрерывного педагогического образования',
+        },
+        {
+          title: 'Кафедра основ дефектологии и реабилитологии',
+        },
+      ].map((item) => ({ ...item, createdAt: new Date(), updatedAt: new Date() })),
       {},
     );
   },

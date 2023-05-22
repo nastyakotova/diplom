@@ -2,7 +2,9 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { ModalWindow } from '../SimpleComponents/ModalWindow';
-import { Button } from '../SimpleComponents/Button';
+import { MarksEditForm } from './MarksEdit';
+import { checkDateEntrance } from './assets/checkDateEntrance';
+import { prognoses } from './assets/consts';
 
 const GridLayout = styled.div`
   background-color: #ffffff;
@@ -28,18 +30,34 @@ const GridLayout = styled.div`
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 2.5fr 8fr 1fr 1fr 0.5fr;
+  grid-template-columns: 6fr 2fr 2fr 0.5fr;
 `;
 
-const HeaderItem = styled.div`
+const GridItem = styled.div`
   display: flex;
   align-items: center;
   height: 62px;
   white-space: pre-wrap;
-  border-bottom: 1px solid rgba(16, 16, 16, 0.1);
-  & svg:hover {
-    cursor: pointer;
+  border-bottom: 1px solid rgba(16, 16, 16, 0.1); pointer;
   }
+  ${(props) => {
+    if (props.variant === 'mark') {
+      return `
+      & p {
+        border: 1px solid rgba(67, 150, 46, 0.2);
+        border-radius: 50vh;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #43962E;
+        padding: 0 10px;
+        min-width: 40px;
+        cursor: pointer;
+      }
+      `;
+    }
+  }}
 `;
 
 const MoreButton = styled.div`
@@ -48,116 +66,98 @@ const MoreButton = styled.div`
   }
 `;
 
-const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 24px 0 0 0;
-  & label {
-    font-size: 14px;
-    line-height: 16px;
-    color: rgba(16, 16, 16, 0.5);
-    margin-bottom: 6px;
-  }
-  & input {
-    width: 264px;
-    height: 49px;
-    background: #ffffff;
-    border: 1px solid rgba(16, 16, 16, 0.1);
-    padding: 15px;
-    gap: 10px;
-    font-size: 16px;
-    line-height: 19px;
-    color: rgba(16, 16, 16, 0.5);
-    margin-bottom: 20px;
-  }
-`;
-
-export const Grid = ({ currentItem }) => {
+export const Grid = ({ currentItem, currentOption }) => {
   const { disciplines } = useSelector((state) => state.data);
-  const [modalWindow, setModalWindow] = React.useState({ isActive: false, type: null });
+  const [modalWindow, setModalWindow] = React.useState({ isActive: false, type: null, params: {} });
 
-  const closeModalWindow = () => setModalWindow({ isActive: false, type: null });
+  const [actualDisciplines, setActualDisciplines] = React.useState(
+    currentOption === 0
+      ? disciplines.filter((discipline) => checkDateEntrance(discipline.examDate.slice(0, 10)))
+      : disciplines.filter((discipline) => !checkDateEntrance(discipline.examDate.slice(0, 10))),
+  );
+
+  React.useEffect(() => {
+    setActualDisciplines(
+      currentOption === 0
+        ? disciplines.filter((discipline) => checkDateEntrance(discipline.examDate.slice(0, 10)))
+        : disciplines.filter((discipline) => !checkDateEntrance(discipline.examDate.slice(0, 10))),
+    );
+  }, [currentOption, disciplines]);
+
+  const closeModalWindow = () => setModalWindow({ isActive: false, type: null, params: {} });
 
   return (
     <React.Fragment>
       <GridLayout>
         <GridContainer>
-          <HeaderItem>ФИО студента</HeaderItem>
-          <HeaderItem>
-            {`Текущая успеваемость `}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="14"
-              viewBox="0 96 960 960"
-              width="14"
-              fill="rgba(16, 16, 16, 0.5)"
-              onClick={() => setModalWindow({ isActive: true, type: 'addColumn' })}
-            >
-              <path d="M427.667 875V628.333H181V523.667h246.667V277h104.666v246.667H779v104.666H532.333V875H427.667Z" />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="14"
-              viewBox="0 96 960 960"
-              width="14"
-              fill="rgba(16, 16, 16, 0.5)"
-              onClick={() => setModalWindow({ isActive: true, type: 'deleteColumn' })}
-            >
-              <path d="M181 628.333V523.667h598v104.666H181Z" />
-            </svg>
-          </HeaderItem>
-          <HeaderItem>Прогноз</HeaderItem>
-          <HeaderItem>Итог</HeaderItem>
-          <HeaderItem />
-          {disciplines[currentItem]?.Group.Users.map((user) => (
-            <React.Fragment key={user.id}>
-              <HeaderItem>
-                {user.surname ? `${user.surname}\n` : ''}
-                {user.name ? `${user.name} ` : ''}
-                {user.patronymic ? user.patronymic : ''}
-              </HeaderItem>
-              <HeaderItem />
-              <HeaderItem />
-              <HeaderItem />
-              <HeaderItem>
-                <MoreButton>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24"
-                    viewBox="0 96 960 960"
-                    width="24"
-                    fill="rgba(16, 16, 16, 0.5)"
-                  >
-                    <path d="M480.571 934q-29.571 0-50.57-20.884-21-20.884-21-50.21 0-28.838 20.835-50.372 20.835-21.533 50.093-21.533 30.071 0 50.571 21.503 20.499 21.503 20.499 50.499 0 28.997-20.429 49.997t-49.999 21Zm0-287.001q-29.571 0-50.57-20.835-21-20.835-21-50.093 0-30.071 20.835-50.571 20.835-20.499 50.093-20.499 30.071 0 50.571 20.429 20.499 20.429 20.499 49.999 0 29.571-20.429 50.571-20.429 20.999-49.999 20.999Zm0-286q-29.571 0-50.57-21.212-21-21.213-21-51t20.835-50.62q20.835-20.833 50.093-20.833 30.071 0 50.571 20.927 20.499 20.928 20.499 50.715 0 29.787-20.429 50.905-20.429 21.118-49.999 21.118Z" />
-                  </svg>
-                </MoreButton>
-              </HeaderItem>
+          {currentItem === -1 ? (
+            <React.Fragment>
+              <GridItem>Данные отсутствуют</GridItem>
+              <GridItem />
+              <GridItem />
+              <GridItem />
             </React.Fragment>
-          ))}
+          ) : (
+            <React.Fragment>
+              <GridItem>ФИО студента</GridItem>
+              <GridItem>Прогноз</GridItem>
+              <GridItem>Итог</GridItem>
+              <GridItem />
+              {actualDisciplines[currentItem]?.Group.Users.map((user, i) => (
+                <React.Fragment key={user.id}>
+                  {/* <GridItem>
+                    {user.surname ? `${user.surname} ` : ''}
+                    {user.name ? `${user.name} ` : ''}
+                    {user.patronymic ? user.patronymic : ''}
+                  </GridItem> */}
+                  <GridItem>{`Студент ${user.id}-${user.login}`}</GridItem>
+                  <GridItem variant="mark">
+                    <p style={{ border: '1px solid rgba(16, 16, 16, 0.2)', color: 'rgba(16, 16, 16, 0.7)' }}>
+                      {prognoses[i]}
+                    </p>
+                  </GridItem>
+                  <GridItem variant="mark">
+                    <p
+                      onClick={() =>
+                        setModalWindow({
+                          isActive: true,
+                          type: 'editMark',
+                          params: {
+                            mark: actualDisciplines[currentItem].Marks.find((mark) => mark.studentId === user.id),
+                            user,
+                          },
+                        })
+                      }
+                    >
+                      {actualDisciplines[currentItem].Marks.find((mark) => mark.studentId === user.id)?.grade}
+                    </p>
+                  </GridItem>
+                  <GridItem>
+                    <MoreButton>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24"
+                        viewBox="0 96 960 960"
+                        width="24"
+                        fill="rgba(16, 16, 16, 0.5)"
+                      >
+                        <path d="M480.571 934q-29.571 0-50.57-20.884-21-20.884-21-50.21 0-28.838 20.835-50.372 20.835-21.533 50.093-21.533 30.071 0 50.571 21.503 20.499 21.503 20.499 50.499 0 28.997-20.429 49.997t-49.999 21Zm0-287.001q-29.571 0-50.57-20.835-21-20.835-21-50.093 0-30.071 20.835-50.571 20.835-20.499 50.093-20.499 30.071 0 50.571 20.429 20.499 20.429 20.499 49.999 0 29.571-20.429 50.571-20.429 20.999-49.999 20.999Zm0-286q-29.571 0-50.57-21.212-21-21.213-21-51t20.835-50.62q20.835-20.833 50.093-20.833 30.071 0 50.571 20.927 20.499 20.928 20.499 50.715 0 29.787-20.429 50.905-20.429 21.118-49.999 21.118Z" />
+                      </svg>
+                    </MoreButton>
+                  </GridItem>
+                </React.Fragment>
+              ))}
+            </React.Fragment>
+          )}
         </GridContainer>
       </GridLayout>
       <ModalWindow isActive={modalWindow.isActive} closeModalWindow={closeModalWindow}>
-        {modalWindow.type === 'addColumn' ? (
-          <React.Fragment>
-            <p>Добавление колонки</p>
-            <Form>
-              <label>Название колонки</label>
-              <input type="text" autoComplete="off" value="" />
-              <label>Форма контроля</label>
-              <input type="text" autoComplete="off" value="" />
-            </Form>
-            <Button>Добавить</Button>
-          </React.Fragment>
-        ) : null}
-        {modalWindow.type === 'deleteColumn' ? (
-          <React.Fragment>
-            <p>Удаление колонки</p>
-            <Form>
-              <label>Выберите колонку для удаления</label>
-              <input type="text" autoComplete="off" value="" />
-            </Form>
-            <Button>Удалить</Button>
-          </React.Fragment>
+        {modalWindow.type === 'editMark' ? (
+          <MarksEditForm
+            modalWindow={modalWindow}
+            discipline={actualDisciplines[currentItem]}
+            closeModalWindow={closeModalWindow}
+          />
         ) : null}
       </ModalWindow>
     </React.Fragment>

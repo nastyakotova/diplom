@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router';
 
-import { professorNavigation, studentNavigation } from './assets/consts';
+import { navigation } from './assets/consts';
 import { useSelector } from 'react-redux';
 
 const NavigationContainer = styled.div`
@@ -44,12 +44,10 @@ export const Navigation = () => {
   const location = useLocation();
   const { role } = useSelector((state) => state.user);
 
-  const [routes, setRoutes] = React.useState(
-    role === 'student' ? studentNavigation : role === 'professor' ? professorNavigation : [],
-  );
+  const [routes, setRoutes] = React.useState(navigation[role] || []);
 
   React.useEffect(() => {
-    setRoutes(role === 'student' ? studentNavigation : role === 'professor' ? professorNavigation : []);
+    setRoutes(navigation[role] || []);
   }, [role]);
 
   return (

@@ -9,9 +9,10 @@ const GridLayout = styled.div`
   grid-template-columns: 0.8fr 2fr;
   grid-template-rows: 0.3fr 1fr;
   gap: 0px 0px;
-  height: 920px;
+  height: 720px;
+  width: 100%;
   grid-template-areas:
-    'navigation header'
+    'navigation chart'
     'navigation chart';
 `;
 
@@ -19,7 +20,7 @@ export const EducationalRoute = () => {
   return (
     <GridLayout>
       <Navigation />
-      <Header />
+      {/* <Header /> */}
       <Chart />
     </GridLayout>
   );
